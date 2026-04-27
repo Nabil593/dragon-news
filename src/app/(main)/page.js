@@ -1,7 +1,8 @@
-import Image from "next/image";
+import { redirect } from "next/navigation";
+import React from "react";
 
-export default function Home() {
-  return (
-    <h2>HomePage</h2>
-  );
-}
+const HomePage = () => {
+  return redirect(`/category/${'01'}`)
+};
+
+export default HomePage;
