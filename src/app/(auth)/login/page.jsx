@@ -1,12 +1,16 @@
 "use client"
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginPage = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
+
+    const [isShowPassword, setIsShowPassword] = useState(true)
+
 
     const handleLogin = async (data) => {
         const { name, email, password, photo } = data;
@@ -35,7 +39,8 @@ const LoginPage = () => {
                     {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
 
                     <label className="label">Password</label>
-                    <input type="password" className="input" {...register("password", { required: "Password field is required" })} placeholder="Password" />
+                    <input type={isShowPassword? "text" : "password"} className="input" {...register("password", { required: "Password field is required" })} placeholder="Password" />
+                    {isShowPassword? <FaEye onClick={() => setIsShowPassword(!isShowPassword)}/> : <FaEyeSlash onClick={() => setIsShowPassword(!isShowPassword)}/>}
                     {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
 
                     <button className="btn btn-neutral mt-4">Login</button>
