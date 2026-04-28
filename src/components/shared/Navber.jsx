@@ -10,7 +10,7 @@ const Navber = () => {
 
     const { data: session, isPending } = authClient.useSession()
     const user = session?.user;
-    console.log(isPending)
+    console.log(session)
 
     return (
         <div className='container mx-auto flex justify-between'>
@@ -26,13 +26,17 @@ const Navber = () => {
                     ? <div className='flex items-center gap-4'>
                         <h2>Hello, {user.name}</h2>
                         <Image
-                            src={user?.image || userAvatar}
+                            src={
+                                (user?.image && typeof user.image === 'string' && user.image.startsWith('http'))
+                                    ? user.image
+                                    : userAvatar // This MUST be the imported userAvatar from your assets
+                            }
                             width={50}
                             height={0}
                             alt="Logo"
                             className='rounded-full'
                         />
-                        <button onClick={async() => await authClient.signOut()} className='btn'>Logout</button>
+                        <button onClick={async () => await authClient.signOut()} className='btn'>Logout</button>
                     </div> :
                     <button className='btn bg-purple-500 text-white'><Link href={'/login'}>Log in</Link></button>
             }

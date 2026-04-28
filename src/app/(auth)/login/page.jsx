@@ -13,7 +13,6 @@ const LoginPage = () => {
 
 
     const handleLogin = async (data) => {
-        const { name, email, password, photo } = data;
 
         const { data: res, error } = await authClient.signIn.email({
             email: data.email, // required
