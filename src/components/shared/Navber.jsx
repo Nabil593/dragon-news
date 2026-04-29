@@ -10,7 +10,7 @@ const Navber = () => {
 
     const { data: session, isPending } = authClient.useSession()
     const user = session?.user;
-    console.log(session)
+    // console.log(session)
 
     return (
         <div className='container mx-auto flex justify-between'>

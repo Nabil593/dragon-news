@@ -4,8 +4,6 @@ import React from 'react';
 
 const NewsCard = ({ news }) => {
 
-    console.log(news)
-
     return (
         <div>
             <div className="card bg-base-100 w-96 shadow-sm">

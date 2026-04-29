@@ -3,12 +3,20 @@ import { authClient } from '@/lib/auth-client';
 import React from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 
-const handleGoogleSignIn = async() => {
+const handleGoogleSignIn = async () => {
     const data = await authClient.signIn.social({
-    provider: "google",
-  });
+        provider: "google",
+    });
 
-  console.log(data)
+    console.log(data)
+}
+
+const handleGithubSignIn = async () => {
+    const data = await authClient.signIn.social({
+        provider: "github",
+    });
+
+    console.log(data)
 }
 
 const RightSidebar = () => {
@@ -17,7 +25,7 @@ const RightSidebar = () => {
             <h2>Login With</h2>
             <div className='flex flex-col gap-2'>
                 <button onClick={handleGoogleSignIn} className='btn'><FaGoogle /> Login with Google</button>
-                <button className='btn'><FaGithub /> Login with Github</button>
+                <button onClick={handleGithubSignIn} className='btn'><FaGithub /> Login with Github</button>
             </div>
         </div>
     );
